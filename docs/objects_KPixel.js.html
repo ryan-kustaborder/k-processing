@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>k-processing: Source: objects/KImage.js</title>
+    <title>k-processing: Source: objects/KPixel.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -21,7 +21,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: objects/KImage.js</h1>
+    <h1 class="page-title">Source: objects/KPixel.js</h1>
 
     
 
@@ -31,22 +31,23 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * Data container for images
- * @class
+ * Class for representing pixel data
  */
-class KImage {
+class KPixel {
     /**
-     * Create a KImage
-     * @param {Pixel[][]} Image pixel data
+     * Data container for individual pixel data
+     * @param {int} R
+     * @param {int} G
+     * @param {int} B
+     * @param {int} A
      */
-    constructor(pixels) {
-        this.pixels = pixels;
-        this.width = pixels.length;
-        this.height = pixels[0].length;
+    constructor(R, G, B, A) {
+        this.r = R;
+        this.g = G;
+        this.b = B;
+        this.a = A;
     }
 }
-
-export default KImage;
 </code></pre>
         </article>
     </section>

@@ -1,4 +1,5 @@
 import KImage from "./objects/KImage.js";
+import KPixel from "./objects/KPixel.js";
 import util from "./util.js";
 
 import pixels from "image-pixels";
@@ -18,19 +19,14 @@ import Jimp from "jimp";
  * @returns {KImage} New Image Object
  */
 async function readImage(path) {
-    var { data, width, height } = await pixels(pixels);
+    var { data, width, height } = await pixels(path);
 
     let image = [];
     let x = 0;
     let row = [];
 
     for (let i = 0; i < data.length; i += 4) {
-        row.push({
-            r: data[i],
-            g: data[i + 1],
-            b: data[i + 2],
-            a: data[i + 3],
-        });
+        row.push(new KPixel(data[i], data[i + 1], data[i + 2], data[i + 3]));
 
         x++;
 
