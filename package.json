@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate-docs": "node_modules/.bin/jsdoc -r -c jsdoc.json"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/ryan-kustaborder/k-processing#readme",
   "devDependencies": {
+    "docdash": "^1.2.0",
     "image-pixels": "^2.2.2",
     "jsdoc": "^4.0.0"
   },

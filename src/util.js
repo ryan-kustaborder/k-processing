@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {Pixel[]} pixel
+ * @returns {int} Hexidecimal Integer
+ */
 function RGBA_to_HEX(pixel) {
     let r = pixel.r.toString(16);
     let g = pixel.g.toString(16);

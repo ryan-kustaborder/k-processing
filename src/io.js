@@ -5,15 +5,14 @@ import pixels from "image-pixels";
 import Jimp from "jimp";
 
 /**
- *
+ * Reads in a given image and returns a KImage object
+ * @async
  * @param {string} path Relataive path to image
  *
  * @returns {KImage} New Image Object
  */
 async function readImage(path) {
-    var { data, width, height } = await pixels(
-        "./test-lib/horizontal-gradient.png"
-    );
+    var { data, width, height } = await pixels(pixels);
 
     let image = [];
     let x = 0;
@@ -43,7 +42,8 @@ async function readImage(path) {
 
 /**
  * Writes a given image as a PNG to specified path
- * @param {KImage} kimg
+ * @async
+ * @param {KImage} KImage Object
  * @param {string} path
  */
 async function writePNG(kimg, path) {

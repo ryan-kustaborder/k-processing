@@ -1,5 +1,6 @@
 /**
  * Data container for images
+ * @class
  */
 class KImage {
     /**
