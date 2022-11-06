@@ -16,7 +16,7 @@
 <body>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="io.html">io</a></li><li><a href="util.html">util</a></li></ul><h3>Classes</h3><ul><li><a href="KImage.html">KImage</a></li><li><a href="KPixel.html">KPixel</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="blur.html">blur</a></li><li><a href="io.html">io</a></li><li><a href="util.html">util</a></li></ul><h3>Classes</h3><ul><li><a href="KImage.html">KImage</a></li><li><a href="KPixel.html">KPixel</a></li></ul>
 </nav>
 
 <div id="main">
@@ -36,10 +36,10 @@
 class KPixel {
     /**
      * Data container for individual pixel data
-     * @param {int} R
-     * @param {int} G
-     * @param {int} B
-     * @param {int} A
+     * @param {int} R Red value of pixel
+     * @param {int} G Green value of pixel
+     * @param {int} B Blue value of pixel
+     * @param {int} A Alpha value of pixel
      */
     constructor(R, G, B, A) {
         this.r = R;
@@ -48,6 +48,8 @@ class KPixel {
         this.a = A;
     }
 }
+
+export default KPixel;
 </code></pre>
         </article>
     </section>

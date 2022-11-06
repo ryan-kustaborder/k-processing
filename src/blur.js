@@ -4,25 +4,44 @@ import util from "./util.js";
  * @namespace blur
  */
 
-function GaussianBlur(kimg) {
-    let radius = 16;
+/**
+ * Applies a 2D Gaussian Blur of specified radius
+ * @memberof blur
+ *
+ * @param {KImage} kimg Source Image
+ * @param {int} radius Kernel Radius
+ */
+function GaussianBlur(kimg, radius) {
     let kernelWidth = radius * 2 + 1;
 
     let sigma = Math.max(radius / 2, 1);
 
+    // Generate the kernel
     let kernel = Array(kernelWidth)
         .fill()
         .map(() => Array(kernelWidth));
 
+    let sum = 0;
+
     for (let x = -radius; x <= radius; x++) {
         for (let y = -radius; y <= radius; y++) {
-            kernel[x + radius][y + radius] = util.Gaussian2D(x, y, sigma);
+            let gauss = util.Gaussian2D(x, y, sigma);
+            kernel[x + radius][y + radius] = gauss;
+            sum += gauss;
         }
     }
 
-    // TODO: copy image when deep copy implemented
+    // Normalize Kernel
+    for (let x = -radius; x <= radius; x++) {
+        for (let y = -radius; y <= radius; y++) {
+            kernel[x + radius][y + radius] /= sum;
+        }
+    }
+
+    // Pad the image so we don't have to check indeces
     let padded = util.PadImage(kimg.pixels, radius);
 
+    // Convolve
     for (let x = radius; x < kimg.width + radius - 1; x++) {
         for (let y = radius; y < kimg.height + radius - 1; y++) {
             let rsum = 0;
@@ -49,6 +68,7 @@ function GaussianBlur(kimg) {
         }
     }
 
+    // TODO: Replace with returning separate object
     kimg.pixels = padded;
 }
 

@@ -33,6 +33,16 @@ function RGBA_to_HEX(pixel) {
     return parseInt("0x" + r + g + b + a, 16);
 }
 
+/**
+ * Calculates value of 2D Gaussian equation at a given point
+ * @memberof util
+ *
+ * @param {int} x x position
+ * @param {int} y y position
+ * @param {float} sigma standard deviation
+ *
+ * @returns {float} Gaussian value
+ */
 function Gaussian2D(x, y, sigma) {
     // Calculate exponential
     let num = x * x + y * y;
@@ -45,6 +55,15 @@ function Gaussian2D(x, y, sigma) {
     return exp * mult;
 }
 
+/**
+ * Pads the given pixels with n amount of pixels
+ * @memberof util
+ *
+ * @param {KPixel[][]} pixels
+ * @param {int} n
+ *
+ * @returns {KPixel[][]} padded pixels
+ */
 function PadImage(pixels, n = 1) {
     for (let i = 0; i < n; i++) {
         let blank = new KPixel(0, 0, 0, 255);

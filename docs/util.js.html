@@ -16,7 +16,7 @@
 <body>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="io.html">io</a></li><li><a href="util.html">util</a></li></ul><h3>Classes</h3><ul><li><a href="KImage.html">KImage</a></li><li><a href="KPixel.html">KPixel</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="blur.html">blur</a></li><li><a href="io.html">io</a></li><li><a href="util.html">util</a></li></ul><h3>Classes</h3><ul><li><a href="KImage.html">KImage</a></li><li><a href="KPixel.html">KPixel</a></li></ul>
 </nav>
 
 <div id="main">
@@ -30,14 +30,17 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
+            <pre class="prettyprint source linenums"><code>import KPixel from "./objects/KPixel.js";
+
+/**
  * @namespace util
  */
 
 /**
  * Converts Pixel object into hexadeximal integer format
  * @memberof util
- * @param {Pixel[]} pixel
+ * @param {KPixel} pixel KPixel to be encoded
+ *
  * @returns {int} Hexidecimal Integer
  */
 function RGBA_to_HEX(pixel) {
@@ -62,7 +65,63 @@ function RGBA_to_HEX(pixel) {
     return parseInt("0x" + r + g + b + a, 16);
 }
 
-const util = { RGBA_to_HEX: RGBA_to_HEX };
+/**
+ * Calculates value of 2D Gaussian equation at a given point
+ * @memberof util
+ *
+ * @param {int} x x position
+ * @param {int} y y position
+ * @param {float} sigma standard deviation
+ *
+ * @returns {float} Gaussian value
+ */
+function Gaussian2D(x, y, sigma) {
+    // Calculate exponential
+    let num = x * x + y * y;
+    let den = 2 * sigma * sigma;
+    let exp = Math.E ** (-1 * (num / den));
+
+    // Calculate Multiplier
+    let mult = 1 / (2 * Math.PI * sigma * sigma);
+
+    return exp * mult;
+}
+
+/**
+ * Pads the given pixels with n amount of pixels
+ * @memberof util
+ *
+ * @param {KPixel[][]} pixels
+ * @param {int} n
+ *
+ * @returns {KPixel[][]} padded pixels
+ */
+function PadImage(pixels, n = 1) {
+    for (let i = 0; i &lt; n; i++) {
+        let blank = new KPixel(0, 0, 0, 255);
+        let horizontal = Array(pixels.length + 2).fill(blank);
+
+        // Add padding to top
+        pixels.unshift(horizontal);
+
+        // Add Padding to sides
+        pixels.forEach((row) => {
+            row.unshift(blank);
+            row.push(blank);
+        });
+
+        // Add Paddinf to bottom
+        pixels.push(horizontal);
+    }
+
+    return pixels;
+}
+
+const util = {
+    RGBA_to_HEX: RGBA_to_HEX,
+    Gaussian2D: Gaussian2D,
+    PadImage: PadImage,
+};
 
 export default util;
 </code></pre>

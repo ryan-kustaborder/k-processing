@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>k-processing: Namespace: io</title>
+    <title>k-processing: Namespace: blur</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -21,7 +21,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Namespace: io</h1>
+    <h1 class="page-title">Namespace: blur</h1>
 
     
 
@@ -32,7 +32,7 @@
 
 <header>
     
-        <h2>io</h2>
+        <h2>blur</h2>
         
     
 </header>
@@ -74,7 +74,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="io.js.html">io.js</a>, <a href="io.js.html#line8">line 8</a>
+        <a href="blur.js.html">blur.js</a>, <a href="blur.js.html#line3">line 3</a>
     </li></ul></dd>
     
 
@@ -113,7 +113,7 @@
     
 
     
-    <h4 class="name" id=".readImage"><span class="type-signature">(async, static) </span>readImage<span class="signature">(path)</span><span class="type-signature"> &rarr; {<a href="KImage.html">KImage</a>}</span></h4>
+    <h4 class="name" id=".GaussianBlur"><span class="type-signature">(static) </span>GaussianBlur<span class="signature">(kimg, radius)</span><span class="type-signature"></span></h4>
     
 
     
@@ -121,7 +121,7 @@
 
 
 <div class="description">
-    Reads in a given image and returns a KImage object
+    Applies a 2D Gaussian Blur of specified radius
 </div>
 
 
@@ -157,13 +157,13 @@
 
         <tr>
             
-                <td class="name"><code>path</code></td>
+                <td class="name"><code>kimg</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type"><a href="KImage.html">KImage</a></span>
 
 
             
@@ -173,7 +173,30 @@
 
             
 
-            <td class="description last">Relataive path to image</td>
+            <td class="description last">Source Image</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>radius</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">int</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Kernel Radius</td>
         </tr>
 
     
@@ -214,189 +237,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="io.js.html">io.js</a>, <a href="io.js.html#line21">line 21</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    New Image Object
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="KImage.html">KImage</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".writePNG"><span class="type-signature">(async, static) </span>writePNG<span class="signature">(KImage, path)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Writes a given image as a PNG to specified path
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>KImage</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="KImage.html">KImage</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Object</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>path</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="io.js.html">io.js</a>, <a href="io.js.html#line53">line 53</a>
+        <a href="blur.js.html">blur.js</a>, <a href="blur.js.html#line14">line 14</a>
     </li></ul></dd>
     
 
