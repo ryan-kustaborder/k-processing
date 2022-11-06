@@ -15,6 +15,10 @@ class KPixel {
         this.b = B;
         this.a = A;
     }
+
+    clone() {
+        return new KPixel(this.r, this.g, this.b, this.a);
+    }
 }
 
 export default KPixel;

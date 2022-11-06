@@ -64,26 +64,26 @@ function Gaussian2D(x, y, sigma) {
  *
  * @returns {KPixel[][]} padded pixels
  */
-function PadImage(pixels, n = 1) {
-    for (let i = 0; i < n; i++) {
-        let blank = new KPixel(0, 0, 0, 255);
-        let horizontal = Array(pixels.length + 2).fill(blank);
-
-        // Add padding to top
-        pixels.unshift(horizontal);
-
-        // Add Padding to sides
-        pixels.forEach((row) => {
-            row.unshift(blank);
-            row.push(blank);
-        });
-
-        // Add Paddinf to bottom
-        pixels.push(horizontal);
+function PadImage(array, n = 1) {
+    if (n == 0) {
+        return array;
     }
 
-    return pixels;
+    const top = array[0];
+    const bot = array[array.length - 1];
+
+    array.push(top);
+    array.unshift(bot);
+
+    array = array.map((a) => {
+        a = [a[0], ...a, a[a.length - 1]];
+        return a;
+    });
+
+    return PadImage(array, n - 1);
 }
+
+function addPadding(array, fill) {}
 
 const util = {
     RGBA_to_HEX: RGBA_to_HEX,

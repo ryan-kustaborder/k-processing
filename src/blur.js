@@ -1,3 +1,5 @@
+import KImage from "./objects/KImage.js";
+import KPixel from "./objects/KPixel.js";
 import util from "./util.js";
 
 /**
@@ -12,6 +14,8 @@ import util from "./util.js";
  * @param {int} radius Kernel Radius
  */
 function GaussianBlur(kimg, radius) {
+    let copy = kimg.clone();
+
     let kernelWidth = radius * 2 + 1;
 
     let sigma = Math.max(radius / 2, 1);
@@ -39,11 +43,15 @@ function GaussianBlur(kimg, radius) {
     }
 
     // Pad the image so we don't have to check indeces
-    let padded = util.PadImage(kimg.pixels, radius);
+    let padded = util.PadImage(copy.pixels, radius);
 
     // Convolve
-    for (let x = radius; x < kimg.width + radius - 1; x++) {
-        for (let y = radius; y < kimg.height + radius - 1; y++) {
+    let result = [];
+
+    for (let x = radius; x < copy.width + radius; x++) {
+        let row = [];
+
+        for (let y = radius; y < copy.height + radius; y++) {
             let rsum = 0;
             let gsum = 0;
             let bsum = 0;
@@ -54,6 +62,7 @@ function GaussianBlur(kimg, radius) {
                     let k = kernel[i + radius][j + radius];
 
                     let pixel = padded[x + i][y + j];
+
                     rsum += pixel.r * k;
                     gsum += pixel.g * k;
                     bsum += pixel.b * k;
@@ -61,15 +70,22 @@ function GaussianBlur(kimg, radius) {
                 }
             }
 
-            padded[x - radius][y].r = parseInt(rsum);
-            padded[x - radius][y].g = parseInt(gsum);
-            padded[x - radius][y].b = parseInt(bsum);
-            padded[x - radius][y].a = parseInt(asum);
+            row.push(
+                new KPixel(
+                    parseInt(rsum),
+                    parseInt(gsum),
+                    parseInt(bsum),
+                    parseInt(asum)
+                )
+            );
         }
+        result.push(row);
     }
 
     // TODO: Replace with returning separate object
-    kimg.pixels = padded;
+    copy.pixels = result;
+
+    return copy;
 }
 
 const blur = { GaussianBlur: GaussianBlur };
