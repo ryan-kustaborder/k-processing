@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/ryan-kustaborder/k-processing#readme",
   "devDependencies": {
-    "filereader": "^0.10.3",
     "image-pixels": "^2.2.2",
     "jsdoc": "^4.0.0"
   },
