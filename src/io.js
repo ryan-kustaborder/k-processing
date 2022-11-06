@@ -5,8 +5,14 @@ import pixels from "image-pixels";
 import Jimp from "jimp";
 
 /**
+ * @namespace io
+ */
+
+/**
  * Reads in a given image and returns a KImage object
  * @async
+ * @memberof io
+ *
  * @param {string} path Relataive path to image
  *
  * @returns {KImage} New Image Object
@@ -43,6 +49,8 @@ async function readImage(path) {
 /**
  * Writes a given image as a PNG to specified path
  * @async
+ * @memberof io
+ *
  * @param {KImage} KImage Object
  * @param {string} path
  */

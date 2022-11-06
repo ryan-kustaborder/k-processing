@@ -22,12 +22,12 @@
   },
   "homepage": "https://github.com/ryan-kustaborder/k-processing#readme",
   "devDependencies": {
-    "docdash": "^1.2.0",
     "image-pixels": "^2.2.2",
     "jsdoc": "^4.0.0"
   },
   "dependencies": {
     "file-class": "^0.1.3",
+    "image-pixels": "^2.2.2",
     "jimp": "^0.16.2"
   }
 }

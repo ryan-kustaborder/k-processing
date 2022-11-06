@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>k-processing: Global</title>
+    <title>k-processing: Namespace: Test</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -16,12 +16,12 @@
 <body>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="io.html">io</a></li></ul><h3>Classes</h3><ul><li><a href="KImage.html">KImage</a></li></ul><h3>Global</h3><ul><li><a href="global.html#RGBA_to_HEX">RGBA_to_HEX</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Test.html">Test</a></li></ul><h3>Classes</h3><ul><li><a href="KImage.html">KImage</a></li></ul><h3>Global</h3><ul><li><a href="global.html#RGBA_to_HEX">RGBA_to_HEX</a></li><li><a href="global.html#writePNG">writePNG</a></li></ul>
 </nav>
 
 <div id="main">
 
-    <h1 class="page-title">Global</h1>
+    <h1 class="page-title">Namespace: Test</h1>
 
     
 
@@ -32,7 +32,7 @@
 
 <header>
     
-        <h2></h2>
+        <h2>Test</h2>
         
     
 </header>
@@ -72,6 +72,11 @@
     
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="io.js.html">io.js</a>, <a href="io.js.html#line7">line 7</a>
+    </li></ul></dd>
+    
 
     
 
@@ -108,12 +113,16 @@
     
 
     
-    <h4 class="name" id="RGBA_to_HEX"><span class="type-signature"></span>RGBA_to_HEX<span class="signature">(pixel)</span><span class="type-signature"> &rarr; {int}</span></h4>
+    <h4 class="name" id=".readImage"><span class="type-signature">(async, static) </span>readImage<span class="signature">(path)</span><span class="type-signature"> &rarr; {<a href="KImage.html">KImage</a>}</span></h4>
     
 
     
 
 
+
+<div class="description">
+    Reads in a given image and returns a KImage object
+</div>
 
 
 
@@ -148,13 +157,13 @@
 
         <tr>
             
-                <td class="name"><code>pixel</code></td>
+                <td class="name"><code>path</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;Pixel></span>
+<span class="param-type">string</span>
 
 
             
@@ -164,7 +173,7 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Relataive path to image</td>
         </tr>
 
     
@@ -205,7 +214,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="util.js.html">util.js</a>, <a href="util.js.html#line6">line 6</a>
+        <a href="io.js.html">io.js</a>, <a href="io.js.html#line19">line 19</a>
     </li></ul></dd>
     
 
@@ -234,7 +243,7 @@
 
         
 <div class="param-desc">
-    Hexidecimal Integer
+    New Image Object
 </div>
 
 
@@ -245,7 +254,7 @@
     </dt>
     <dd>
         
-<span class="param-type">int</span>
+<span class="param-type"><a href="KImage.html">KImage</a></span>
 
 
     </dd>

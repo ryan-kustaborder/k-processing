@@ -1,5 +1,10 @@
 /**
- *
+ * @namespace util
+ */
+
+/**
+ * Converts Pixel object into hexadeximal integer format
+ * @memberof util
  * @param {Pixel[]} pixel
  * @returns {int} Hexidecimal Integer
  */
