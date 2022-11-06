@@ -65,7 +65,7 @@ async function writePNG(kimg, path) {
         hexData.push(row);
     }
 
-    let outputImage = new Jimp(kimg.width, kimg.height, function (err, image) {
+    let outputImage = new Jimp(kimg.height, kimg.width, function (err, image) {
         if (err) throw err;
 
         hexData.forEach((row, y) => {
