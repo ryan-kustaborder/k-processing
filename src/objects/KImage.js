@@ -16,6 +16,10 @@ class KImage {
         this.height = pixels[0].length;
     }
 
+    /**
+     * Deep copy method
+     * @returns {KImage} Copy of image
+     */
     clone() {
         let fresh = [];
 
@@ -32,6 +36,11 @@ class KImage {
         return new KImage(fresh);
     }
 
+    /**
+     * Convolves the image with the given kernel
+     * @param {float[][]} kernel kernel
+     * @returns {KImage} Convolved image
+     */
     convolve(kernel) {
         let copy = this.clone();
         let radius = (kernel.length - 1) / 2;

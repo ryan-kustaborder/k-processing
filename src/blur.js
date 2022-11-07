@@ -42,9 +42,24 @@ function GaussianBlur(kimg, radius) {
         }
     }
 
-    // Convolve
     return copy.convolve(kernel);
 }
 
-const blur = { GaussianBlur: GaussianBlur };
+function grayscaleAverage(kimg) {
+    let copy = kimg.clone();
+
+    for (let i = 0; i < kimg.width; i++) {
+        for (let j = 0; j < kimg.height; j++) {
+            let p = kimg.pixels[i][j];
+
+            let val = parseInt((p.r + p.g + p.b) / 3);
+
+            copy.pixels[i][j] = new KPixel(val, val, val, p.a);
+        }
+    }
+
+    return copy;
+}
+
+const blur = { GaussianBlur: GaussianBlur, grayscaleAverage: grayscaleAverage };
 export default blur;
