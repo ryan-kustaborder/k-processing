@@ -2,18 +2,17 @@
  * Class for representing pixel data
  */
 class KPixel {
+    constructor(data) {
+        this.data = data;
+    }
+
     /**
-     * Data container for individual pixel data
-     * @param {int} R Red value of pixel
-     * @param {int} G Green value of pixel
-     * @param {int} B Blue value of pixel
-     * @param {int} A Alpha value of pixel
+     * Gets pixel's value for specified channel
+     * @param {*} i
+     * @returns
      */
-    constructor(R, G, B, A) {
-        this.r = R;
-        this.g = G;
-        this.b = B;
-        this.a = A;
+    get(i) {
+        return this.data[i];
     }
 
     clone() {

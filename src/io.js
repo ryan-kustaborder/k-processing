@@ -26,7 +26,7 @@ async function readImage(path) {
     let row = [];
 
     for (let i = 0; i < data.length; i += 4) {
-        row.push(new KPixel(data[i], data[i + 1], data[i + 2], data[i + 3]));
+        row.push(new KPixel([data[i], data[i + 1], data[i + 2], data[i + 3]]));
 
         x++;
 
@@ -52,6 +52,7 @@ async function readImage(path) {
  */
 async function writePNG(kimg, path) {
     let data = kimg.pixels;
+    let channels = kimg.pixels[0][0].data.length;
 
     let hexData = [];
 
@@ -59,7 +60,8 @@ async function writePNG(kimg, path) {
         let row = [];
 
         for (let j = 0; j < kimg.height; j++) {
-            row.push(util.RGBA_to_HEX(data[i][j]));
+            if (channels == 4) row.push(util.RGBA_to_HEX(data[i][j]));
+            else if (channels == 1) row.push(util.A_to_HEX(data[i][j]));
         }
 
         hexData.push(row);

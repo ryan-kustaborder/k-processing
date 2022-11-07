@@ -12,10 +12,10 @@ import KPixel from "./objects/KPixel.js";
  * @returns {int} Hexidecimal Integer
  */
 function RGBA_to_HEX(pixel) {
-    let r = pixel.r.toString(16);
-    let g = pixel.g.toString(16);
-    let b = pixel.b.toString(16);
-    let a = pixel.a.toString(16);
+    let r = pixel.get(0).toString(16);
+    let g = pixel.get(1).toString(16);
+    let b = pixel.get(2).toString(16);
+    let a = pixel.get(3).toString(16);
 
     if (r.length < 2) {
         r = "0" + r;
@@ -31,6 +31,16 @@ function RGBA_to_HEX(pixel) {
     }
 
     return parseInt("0x" + r + g + b + a, 16);
+}
+
+function A_to_HEX(pixel) {
+    let val = pixel.get(0).toString(16);
+
+    if (val.length < 2) {
+        val = "0" + val;
+    }
+
+    return parseInt("0x" + val + val + val + "ff", 16);
 }
 
 /**
@@ -83,10 +93,9 @@ function PadImage(array, n = 1) {
     return PadImage(array, n - 1);
 }
 
-function addPadding(array, fill) {}
-
 const util = {
     RGBA_to_HEX: RGBA_to_HEX,
+    A_to_HEX: A_to_HEX,
     Gaussian2D: Gaussian2D,
     PadImage: PadImage,
 };

@@ -52,9 +52,9 @@ function grayscaleAverage(kimg) {
         for (let j = 0; j < kimg.height; j++) {
             let p = kimg.pixels[i][j];
 
-            let val = parseInt((p.r + p.g + p.b) / 3);
+            let val = parseInt((p.get(0) + p.get(1) + p.get(2)) / 3);
 
-            copy.pixels[i][j] = new KPixel(val, val, val, p.a);
+            copy.pixels[i][j] = new KPixel([val]);
         }
     }
 
