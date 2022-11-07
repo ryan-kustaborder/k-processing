@@ -42,50 +42,8 @@ function GaussianBlur(kimg, radius) {
         }
     }
 
-    // Pad the image so we don't have to check indeces
-    let padded = util.PadImage(copy.pixels, radius);
-
     // Convolve
-    let result = [];
-
-    for (let x = radius; x < copy.width + radius; x++) {
-        let row = [];
-
-        for (let y = radius; y < copy.height + radius; y++) {
-            let rsum = 0;
-            let gsum = 0;
-            let bsum = 0;
-            let asum = 0;
-
-            for (let i = -radius; i <= radius; i++) {
-                for (let j = -radius; j <= radius; j++) {
-                    let k = kernel[i + radius][j + radius];
-
-                    let pixel = padded[x + i][y + j];
-
-                    rsum += pixel.r * k;
-                    gsum += pixel.g * k;
-                    bsum += pixel.b * k;
-                    asum += pixel.a * k;
-                }
-            }
-
-            row.push(
-                new KPixel(
-                    parseInt(rsum),
-                    parseInt(gsum),
-                    parseInt(bsum),
-                    parseInt(asum)
-                )
-            );
-        }
-        result.push(row);
-    }
-
-    // TODO: Replace with returning separate object
-    copy.pixels = result;
-
-    return copy;
+    return copy.convolve(kernel);
 }
 
 const blur = { GaussianBlur: GaussianBlur };
