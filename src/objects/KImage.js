@@ -14,6 +14,8 @@ class KImage {
         this.pixels = pixels;
         this.width = pixels.length;
         this.height = pixels[0].length;
+
+        this.channels = pixels[0][0].data.length;
     }
 
     /**
@@ -28,7 +30,14 @@ class KImage {
 
             for (let j = 0; j < this.height; j++) {
                 let src = this.pixels[i][j];
-                row.push(new KPixel(src.r, src.g, src.b, src.a));
+
+                let p = [];
+
+                for (let c = 0; c < this.channels; c++) {
+                    p.push(src.get(c));
+                }
+
+                row.push(new KPixel(p));
             }
             fresh.push(row);
         }
@@ -55,10 +64,7 @@ class KImage {
             let row = [];
 
             for (let y = radius; y < copy.height + radius; y++) {
-                let rsum = 0;
-                let gsum = 0;
-                let bsum = 0;
-                let asum = 0;
+                let sums = Array(this.channels).fill(0);
 
                 for (let i = -radius; i <= radius; i++) {
                     for (let j = -radius; j <= radius; j++) {
@@ -66,21 +72,22 @@ class KImage {
 
                         let pixel = padded[x + i][y + j];
 
-                        rsum += pixel.r * k;
-                        gsum += pixel.g * k;
-                        bsum += pixel.b * k;
-                        asum += pixel.a * k;
+                        if (this.channels == 4) {
+                            sums[0] = pixel.get(0) * k;
+                            sums[1] = pixel.get(1) * k;
+                            sums[2] = pixel.get(2) * k;
+                            sums[3] = pixel.get(3) * k;
+                        } else {
+                            sums[0] = pixel.get(0) * k;
+                        }
                     }
                 }
 
-                row.push(
-                    new KPixel(
-                        parseInt(rsum),
-                        parseInt(gsum),
-                        parseInt(bsum),
-                        parseInt(asum)
-                    )
-                );
+                for (let c = 0; c < this.channels; c++) {
+                    sums[c] = parseInt(sums[c]);
+                }
+
+                row.push(new KPixel(sums));
             }
             result.push(row);
         }

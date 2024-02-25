@@ -41,12 +41,12 @@ function GaussianBlur(kimg, radius) {
             kernel[x + radius][y + radius] /= sum;
         }
     }
-
+    console.log("---------------------");
     return copy.convolve(kernel);
 }
 
 function grayscaleAverage(kimg) {
-    let copy = kimg.clone();
+    let result = [];
 
     for (let i = 0; i < kimg.width; i++) {
         for (let j = 0; j < kimg.height; j++) {
@@ -54,11 +54,11 @@ function grayscaleAverage(kimg) {
 
             let val = parseInt((p.get(0) + p.get(1) + p.get(2)) / 3);
 
-            copy.pixels[i][j] = new KPixel([val]);
+            result[i][j] = new KPixel([val]);
         }
     }
 
-    return copy;
+    return new KImage(result);
 }
 
 const blur = { GaussianBlur: GaussianBlur, grayscaleAverage: grayscaleAverage };
